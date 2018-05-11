@@ -30738,15 +30738,41 @@ $('[name="keySelect"]').on('change', function () {
 
 // Create Asset
 $('#createSubmit').on('click', function () {
-  const asset = $('#createRegist').val() + "," + $('#createName').val()
-  if (asset) app.update('create', asset)
-})
+
+    const owner = $('[name="keySelect"]').val()
+    const registNumber = $('#createRegist').val()
+    const color = $('#createColor').val()
+    const model = $('#createModel').val()
+    const manufacturer = $('#createManufacturer').val()
+    const dateOfBuild = $('#createDateBuild').val()
+    const costPrice = $('#createCost').val()
+    
+    if(owner && registNumber && color && model && manufacturer && dateOfBuild && costPrice){
+      const asset = "Registration-Number->" + registNumber + ", Color->" + color + ", Model->" + 
+        model + ", Manufacturer->" + manufacturer + ", Date-Of-Build->" + dateOfBuild + ", Cost-Price->" 
+        + costPrice
+        app.update('create', asset)
+        return true
+    } else {
+      alert("Fill all required fields")
+      return false
+    }
+  })
 
 // Transfer Asset
 $('#transferSubmit').on('click', function () {
-  const asset = $('[name="assetSelect"]').val()
+  
+  const sellPrice = $('#transferCost').val()
   const owner = $('[name="transferSelect"]').val()
-  if (asset && owner) app.update('transfer', asset, owner)
+
+  if (sellPrice && owner) {
+    const asset = $('[name="assetSelect"]').val() + ", Selling-Price->" + sellPrice
+    app.update('transfer', asset, owner)
+    return true
+  } else {
+      alert("Fill all required fields")
+      return false
+  }
 })
 
 // Accept Asset

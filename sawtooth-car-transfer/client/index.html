@@ -50,6 +50,15 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
       margin-left: 2%;
     }
   </style>
+  <script type="text/javascript">
+    function validateDate(date) {
+      if((new Date(date)) > (new Date())){
+        alert("Invalid Date")
+        document.getElementById("createDateBuild").value = ""
+      }
+    }
+    
+  </script>
 </head>
 <body>
   
@@ -60,26 +69,30 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
 
   <div id="body">
     <div id="left-column">
-      <div class="form-group">
-        <label>Select Holder</label>
-        <select class="form-control" name="keySelect">
-          <option value="none" selected>Select public key...</option>
-          <option value="new">Create new key pair</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Create Car Record</label>
-        <br>
-        <label>Registration Number</label>
-        <input id="createRegist" class="form-control" type="text" placeholder="Enter registration number..." required>
-        <label>Color</label>
-        <input id="createColor" class="form-control" type="text" placeholder="Enter color..." required>
-        <label>Model</label>
-        <input id="createModel" class="form-control" type="text" placeholder="Enter model..." required>
-        <input id="createSubmit" type="button" value="Create" class="btn btn-primary">
-      </div>
-
+        <div class="form-group">
+          <label>Select Holder</label>
+          <select class="form-control" name="keySelect" id="keySelect" required>
+            <option value="" selected>Select public key...</option>
+            <option value="new">Create new key pair</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Create Car Record</label>
+          <br>
+          <label>Registration Number</label>
+          <input id="createRegist" class="form-control" type="text" placeholder="Enter registration number..." required>
+          <label>Color</label>
+          <input id="createColor" class="form-control" type="text" placeholder="Enter color..." required>
+          <label>Model</label>
+          <input id="createModel" class="form-control" type="text" placeholder="Enter model..." required>
+          <label>Manufacturer</label>
+          <input id="createManufacturer" class="form-control" type="text" placeholder="Enter manufacturer..." required>
+          <label>Date Of Build</label>
+          <input id="createDateBuild" class="form-control" type="date" placeholder="Enter date of build..." required onchange="validateDate(this.value)">
+          <label>Cost Price</label>
+          <input id="createCost" class="form-control" type="number" step="0.01" placeholder="Enter cost price..." required>
+          <input id="createSubmit" type="button" value="Create" class="btn btn-primary" onclick="checkEmpty()" >
+        </div>
       <div class="form-group">
         <label>Transfer Car</label>
         <select class="form-control" name="assetSelect">
@@ -89,9 +102,7 @@ Original source code can be found here: https://github.com/delventhalz/transfer-
           <option value="none" selected>Select recipient...</option>
         </select>
         <label>Selling Price</label>
-        <input id="createCost" class="form-control" type="text" placeholder="Enter selling price..." required>
-        <label>Year Of Sale</label>
-        <input id="createYear" class="form-control" type="text" placeholder="Enter year of sale..." required>
+        <input id="transferCost" class="form-control" type="number" step="0.01" placeholder="Enter selling price..." required>
         <input id="transferSubmit" type="button" value="Transfer" class="btn btn-primary">
       </div>
 
